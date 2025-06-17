@@ -1,0 +1,9 @@
+jupyterlab==4.2.0
+jupyter-server==2.14.1
+ipykernel==6.29.4
+ipython==8.25.0
+terminado==0.18.1
+httpx==0.27.0
+numpy
+pandas
+matplotlib

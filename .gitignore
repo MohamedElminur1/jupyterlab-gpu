@@ -1,0 +1,15 @@
+# Ignore secrets
+.env
+
+# Ignore local workspace
+workspace/
+
+# System files
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Docker artifacts
+.dockerignore

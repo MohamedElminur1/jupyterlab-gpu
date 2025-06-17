@@ -1,0 +1,35 @@
+services:
+  elmi:
+    container_name: jupyterlab-elmi
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: jupyterlab:pro
+    environment:
+      - JUPYTER_PASSWORD=${JUPYTER_PASSWORD}
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./workspace:/workspace
+    env_file:
+      - .env
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    restart: unless-stopped
+    shm_size: "2g"
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8888/api"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
